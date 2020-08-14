@@ -1,0 +1,14 @@
+.lacami {
+  list-style-type: none;
+}
+
+.done {
+  text-decoration: line-through;
+}
+input {
+  border: 1px solid red;
+}
+
+li:hover {
+  cursor: pointer;
+}
