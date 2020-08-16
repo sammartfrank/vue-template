@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" width="100" src="./assets/logo.gif" />
+    <img alt="Vue logo" width="200" src="./assets/logo.gif" />
     <Input />
     <Counter />
     <Game />

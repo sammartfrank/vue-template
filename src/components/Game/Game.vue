@@ -10,7 +10,7 @@
           <h5>has been Selected</h5>
           <hr />
         </div>
-        <button v-show="!battle" @click="battle = !battle">Battle!</button>
+        <button class="battleButton" v-show="!battle" @click="battle = !battle">Battle!</button>
         <template v-if="battle">
           <div class="battleContainer">
             <div class="heroBattle">
@@ -25,20 +25,29 @@
               </div>
               <div>
                 <hr />
-                <div :style="{display: 'flex', justifyContent: 'center'}">
-                  <div>
+                <div
+                  :style="{display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'center', alignItems: 'center' }"
+                >
+                  <button
+                    class="battleButton"
+                    @click="attack(selectedPlayer.strength, selectedPlayer.speed, selectedPlayer.type)"
+                    :disabled="playerHealth < 0 || foeHealth < 0"
+                  >Hit</button>
+                  <div v-if="selectedPlayer.name === 'Leonidas'">
+                    <button class="battleButton" @click="handleParry">Parry / Counter</button>
                     <button
-                      @click="attack(selectedPlayer.strength, selectedPlayer.speed, selectedPlayer.type)"
-                      :disabled="playerHealth < 0"
-                    >Hit</button>
+                      class="battleButton"
+                      @click="handleLeonidas"
+                      :disabled="special"
+                    >Spartan Fire</button>
                   </div>
-                  <div v-show="selectedPlayer.name === 'Fenix'">
-                    <button @click="handleFenix" :disabled="playerHealth > 0">Revive</button>
+                  <div v-if="selectedPlayer.name === 'Fenix'">
+                    <button
+                      class="battleButton"
+                      @click="handleFenix"
+                      :disabled="playerHealth > 0"
+                    >Revive</button>
                   </div>
-                </div>
-                <div v-show="selectedPlayer.name === 'Leonidas'">
-                  <button @click="handleParry">Try to Parry and Counter</button>
-                  <button @click="handleLeonidas" :disabled="special">Spartan Fire</button>
                 </div>
               </div>
             </div>
@@ -52,7 +61,7 @@
               {{ foes[this.foeIndx].name }}
               <div v-if="foeHealth <= 0">
                 <h2>{{this.foes[this.foeIndx].name}} Defeated!!</h2>
-                <button @click="handleLevel">Next Round</button>
+                <button class="nextLevel" @click="handleLevel">Next Round</button>
               </div>
             </div>
           </div>
@@ -100,7 +109,7 @@ export default {
   props: {},
   data: function () {
     return {
-      header: "Game Template",
+      header: "1 on 1 Good vs Evil",
       playing: false,
       battle: false,
       selectedPlayer: null,
@@ -122,11 +131,11 @@ export default {
     },
     attack: function (strength, speed, type) {
       if (type === "melee") {
-        let dmg = (strength + speed) * speed * 2;
+        let dmg = strength * speed * 1.2;
         const foeDmg =
-          this.foes[this.foeIndx].strength * this.foes[this.foeIndx].speed * 5;
-        const varDmg = Math.max(Math.floor(Math.random() * dmg) + 1);
-        const dmgTaken = Math.max(Math.floor(Math.random() * foeDmg + 1));
+          this.foes[this.foeIndx].strength * this.foes[this.foeIndx].speed * 4;
+        const varDmg = Math.max(Math.floor(Math.random() * dmg) + 1, 100);
+        const dmgTaken = Math.max(Math.floor(Math.random() * foeDmg) + 1, 50);
         this.log.push(
           `${this.selectedPlayer.name} hits ${varDmg} true Damage to ${
             this.foes[this.foeIndx].name
@@ -143,10 +152,10 @@ export default {
         this.playerHealth = newPlayerHealth;
       }
       if (type === "range") {
-        const dmg = strength * speed;
+        const dmg = strength * speed * 1.2;
         const foeDmg =
-          this.foes[this.foeIndx].strength * this.foes[this.foeIndx].speed * 20;
-        const secondGo = speed * 2;
+          this.foes[this.foeIndx].strength * this.foes[this.foeIndx].speed * 4;
+        const secondGo = speed * 5;
         const varDmg = Math.max(Math.floor(Math.random() * dmg) + 1, 100);
         this.log.push(
           `${this.selectedPlayer.name} hits ${varDmg} true Damage to ${
@@ -164,6 +173,21 @@ export default {
         this.foeHealth = newFoeHealth;
         this.playerHealth = newPlayerHealth;
       }
+      if (this.foeHealth <= 0) {
+        this.log.push(
+          `${this.foes[this.foeIndx].name} is killed by ${
+            this.selectedPlayer.name
+          }`
+        );
+        return (this.foeHealth = 0);
+      }
+      if (this.playerHealth <= 0) {
+        this.log.push(
+          `${this.selectedPlayer.name} is killed by ${
+            this.foes[this.foeIndx].name
+          }.`
+        );
+      }
     },
     calcPercent: function (param) {
       let total = this.selectedPlayer.hp;
@@ -180,13 +204,13 @@ export default {
       this.foeHealth = this.foes[this.foeIndx].hp;
     },
     handleFenix: function () {
-      this.playerHealth = 500;
+      this.playerHealth = 1500;
     },
     handleLeonidas: function () {
       this.special = true;
-      this.foeHealth = this.foeHealth - 1000;
+      this.foeHealth = this.foeHealth - 1500;
       this.log.push(
-        `${this.selectedPlayer.name} uses Spartan Fire for 1000hp and stuns ${
+        `${this.selectedPlayer.name} uses Spartan Fire for 1500 and stuns ${
           this.foes[this.foeIndx].name
         }`
       );
@@ -201,10 +225,20 @@ export default {
     handleParry: function () {
       let chance = Math.random();
       if (chance < 0.5) {
-        return (this.playerHealth -= 360);
+        this.log.push(
+          `${this.selectedPlayer.name} try to parry ${
+            this.foes[this.foeIndx].name
+          } attack but misses and recieves 780 dmg`
+        );
+        return (this.playerHealth -= 780);
       }
       this.playerHealth -= 50;
       this.special = false;
+      this.log.push(
+        `${this.selectedPlayer.name} parries ${
+          this.foes[this.foeIndx].name
+        } attack and gets a special attack bonus. Also gets 50 dmg taken`
+      );
     },
   },
 };

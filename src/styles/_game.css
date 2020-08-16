@@ -1,6 +1,6 @@
 .card {
-  width: 200px;
-  margin: 5px;
+  width: 100%;
+  margin: 5px auto;
 }
 .card:hover {
   cursor: pointer;
@@ -41,4 +41,48 @@
   color: white;
   background-color: transparent;
   border: 1px solid darkgray;
+}
+
+.battleButton {
+  outline: none;
+  background: firebrick;
+  color: white;
+  font-weight: 900;
+  width: 120px;
+  height: 70px;
+  border: none;
+  border-radius: 10px;
+  margin: 5px 10px;
+}
+.battleButton:hover {
+  color: firebrick;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid red;
+  border-style: inset;
+}
+.battleButton:disabled {
+  cursor: not-allowed;
+  background-color: darkgray;
+  border: none;
+  color: white;
+}
+
+.nextLevel {
+  outline: none;
+  background: transparent;
+  color: green;
+  font-weight: 900;
+  width: 120px;
+  height: 70px;
+  border: none;
+  border-radius: 10px;
+  margin: 5px 10px;
+}
+
+.nextLevel:hover {
+  cursor: pointer;
+  border: 1px solid green;
+  background: green;
+  color: white;
 }
