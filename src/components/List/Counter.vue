@@ -17,7 +17,7 @@ export default {
   name: "Counter",
   data: function () {
     return {
-      header: "Todo Counter",
+      header: " Simple Counter",
       counter: 0,
     };
   },
@@ -48,6 +48,14 @@ export default {
 
 <style lang="css" scoped>
 #counter {
-  background: cornsilk;
+  background: paleturquoise;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 3px 3px 15px 6px #ccc;
+  height: 500px;
+  width: 50%;
+  padding: 50px 0;
 }
 </style>

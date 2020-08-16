@@ -1,0 +1,38 @@
+export const characters = [
+  {
+    id: 1,
+    img: 'leonidas',
+    name: 'Leonidas',
+    type: 'melee',
+    hp: 2500,
+    strength: 25,
+    speed: 30,
+  },
+  {
+    id: 2,
+    img: '',
+    name: 'Fenix',
+    type: 'range',
+    hp: 1500,
+    strength: 30,
+    speed: 30,
+  },
+  {
+    id: 3,
+    img: '',
+    type: 'melee',
+    name: 'Isildur',
+    hp: 2000,
+    strength: 35,
+    speed: 50,
+  },
+  {
+    id: 4,
+    img: '',
+    type: 'range',
+    name: 'Onix',
+    hp: 4500,
+    strength: 50,
+    speed: 35,
+  },
+];

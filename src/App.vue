@@ -1,24 +1,24 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" height="150" src="./assets/logo.gif" />
-    <HelloWorld msg="Todo App in Vue" />
+    <img alt="Vue logo" width="100" src="./assets/logo.gif" />
     <Input />
     <Counter />
+    <Game />
   </div>
 </template>
 
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
 import Input from "./components/Input/Input";
 import Counter from "./components/List/Counter";
+import Game from "./components/Game/Game";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
     Input,
     Counter,
+    Game,
   },
 };
 </script>
@@ -31,6 +31,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #1a70c5;
-  margin-top: 60px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>

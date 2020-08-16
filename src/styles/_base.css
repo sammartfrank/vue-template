@@ -1,14 +1,89 @@
 .lacami {
   list-style-type: none;
-}
-
-.done {
-  text-decoration: line-through;
-}
-input {
-  border: 1px solid red;
-}
-
-li:hover {
+  font-size: 2em;
+  color: rebeccapurple;
+  transition: all 0.4s;
   cursor: pointer;
+}
+.completed {
+  text-decoration: line-through;
+  font-style: italic;
+  color: green;
+}
+
+input {
+  margin: 5px;
+  padding: 5px;
+  height: 28px;
+  outline: none;
+  font-size: 1.5rem;
+  border: none;
+  color: rebeccapurple;
+  background: transparent;
+  border-bottom: 1px solid #cdcdcd;
+}
+.progress {
+  width: 100%;
+  border-radius: 100%;
+  height: 10px;
+}
+.dynamo {
+  height: 200px;
+  border: 1px solid #cdcdcd;
+  border-radius: 20px;
+
+  background-color: transparent;
+}
+
+.error {
+  margin: 20px auto;
+  color: cyan;
+  font-weight: 900;
+}
+
+.vuButton {
+  padding: 10px;
+  margin: 5px;
+  background: firebrick;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.23s;
+}
+
+.vuButton:hover {
+  background: lightseagreen;
+  outline: none;
+  color: white;
+}
+
+.vuButton:focus {
+  outline: 2px solid orangered;
+}
+
+.rsetbutton {
+  padding: 10px;
+  margin: 5px;
+  background: firebrick;
+  border: none;
+  color: white;
+  outline: none;
+}
+
+.rsetbutton:hover {
+  padding: 10px;
+  margin: 5px;
+  background: transparent;
+  color: firebrick;
+  cursor: pointer;
+}
+
+.todosection {
+  background: white;
+  width: 50%;
+  height: 600px;
+  margin: 10px;
+  padding: 50px 0;
+  overflow: hidden;
+  box-shadow: 3px 3px 15px 6px #ccc;
 }

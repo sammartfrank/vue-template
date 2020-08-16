@@ -1,0 +1,44 @@
+.card {
+  width: 200px;
+  margin: 5px;
+}
+.card:hover {
+  cursor: pointer;
+  border: 5px solid skyblue;
+  box-shadow: 3px 3px 5px 6px #ccc;
+  background-color: darkslateblue;
+  color: white;
+}
+
+.charactersContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.battleContainer {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  width: 60%;
+}
+
+.heroBattle {
+  width: 60%;
+  margin: 20px;
+  height: 300px;
+}
+
+.gameSection {
+  padding-top: 20px;
+  width: 100%;
+  height: 100vh;
+}
+
+.healthBar {
+  margin: 10px 5px;
+  height: 30px;
+  display: flex;
+  color: white;
+  background-color: transparent;
+  border: 1px solid darkgray;
+}
